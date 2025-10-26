@@ -1,20 +1,23 @@
-# CSE 510 Warm-Up Assignment: Text Preprocessing Web Service
+# EAS 510 Warm-Up Assignment: Text Preprocessing Web Service
 
-Welcome to the warm-up assignment for CSE 510! This assignment will help you get familiar with text preprocessing, web development with Flask, and working with Project Gutenberg texts before diving into the main Shannon Information Theory assignment.
+This is my completed implementation of the EAS 510 Warm-Up Assignment. In this project, a web service is implemented demonstrating the understanding of text preprocessing, Flask web development, and working with Project Gutenberg texts. This project also prepares for the main Shannon Information Theory assignment.
 
-## 🎯 Assignment Overview
+## What This Project Does
 
-You'll build a web service that:
+This web service I implemented:
+
 - Fetches text from Project Gutenberg URLs
 - Cleans and preprocesses the text
-- Provides statistical analysis
-- Returns results via a clean web interface
+- Computes text statistics including characters, words, sentences, and averages
+- Generates a short summary of the text
+- Displays all results in a modern, clean web interface
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Environment Setup
 
-First, test your environment:
+I verified the environment using:
+
 ```bash
 python test_setup.py
 ```
