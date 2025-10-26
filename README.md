@@ -111,7 +111,7 @@ warmup-starter-repo/
 ##  Screenshots of My Working Application
 
 ### Web Interface
-[ Interface before entering the URL (PDF)](screenshots/ex.pdf)
+[ Interface before entering the URL (PDF)](screenshots/SS.pdf)
 
 ### Processed Output
 [ Output Screenshot 1](screenshots/ex1.pdf)  
