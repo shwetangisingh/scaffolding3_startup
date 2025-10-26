@@ -321,45 +321,71 @@
         function displayResults(data) {
             hideLoading();
 
-            // Display statistics
             const stats = data.statistics;
             const statsContainer = document.getElementById('stats');
             statsContainer.innerHTML = `
-                <div class="stat-card">
-                    <span class="stat-value">${stats.total_characters.toLocaleString()}</span>
-                    <div class="stat-label">Characters</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-value">${stats.total_words.toLocaleString()}</span>
-                    <div class="stat-label">Words</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-value">${stats.total_sentences.toLocaleString()}</span>
-                    <div class="stat-label">Sentences</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-value">${stats.avg_word_length.toFixed(1)}</span>
-                    <div class="stat-label">Avg Word Length</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-value">${stats.avg_sentence_length.toFixed(1)}</span>
-                    <div class="stat-label">Avg Sentence Length</div>
-                </div>
-            `;
+        <div class="stat-card">
+            <span class="stat-value">${stats.total_characters.toLocaleString()}</span>
+            <div class="stat-label">Characters</div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-value">${stats.total_words.toLocaleString()}</span>
+            <div class="stat-label">Words</div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-value">${stats.total_sentences.toLocaleString()}</span>
+            <div class="stat-label">Sentences</div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-value">${stats.avg_word_length.toFixed(1)}</span>
+            <div class="stat-label">Avg Word Length</div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-value">${stats.avg_sentence_length.toFixed(1)}</span>
+            <div class="stat-label">Avg Sentence Length</div>
+        </div>
+    `;
+
+            // Create top words HTML
+            const topWordsHtml = stats.most_common_words.map((wordData, index) => `
+        <div class="word-item">
+            <span class="word-rank">${index + 1}.</span>
+            <span class="word-text">${wordData[0]}</span>
+            <span class="word-count">(${wordData[1].toLocaleString()})</span>
+        </div>
+    `).join('');
+
+            // Create and insert top words section
+            const topWordsDiv = document.createElement('div');
+            topWordsDiv.className = 'top-words-preview';
+            topWordsDiv.innerHTML = `
+        <h3>🔤 Top 10 Most Common Words</h3>
+        <div class="words-list">${topWordsHtml}</div>
+    `;
+
+            // Insert top words before summary
+            const resultsDiv = document.getElementById('results');
+            const summaryDiv = document.querySelector('.summary-preview');
+            const existingTopWords = document.querySelector('.top-words-preview');
+
+            // Remove old top words if exists
+            if (existingTopWords) {
+                existingTopWords.remove();
+            }
+
+            resultsDiv.insertBefore(topWordsDiv, summaryDiv);
 
             // Display summary
             document.getElementById('summary').textContent = data.summary;
 
-            // Display text preview (first 500 characters)
+            // Display text preview
             const preview = data.cleaned_text.substring(0, 500) +
                 (data.cleaned_text.length > 500 ? '...' : '');
             document.getElementById('preview').textContent = preview;
 
-            // Show results
             document.getElementById('results').style.display = 'block';
             document.getElementById('error').style.display = 'none';
         }
-
         // TODO: Implement the form submission handler
         document.getElementById('textForm').addEventListener('submit', async function (e) {
             e.preventDefault();

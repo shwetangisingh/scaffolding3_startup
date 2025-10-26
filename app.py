@@ -74,12 +74,7 @@ def clean_text():
         # TODO: Get statistics with preprocessor.get_text_statistics()
         # TODO: Create summary with preprocessor.create_summary()
         # TODO: Return JSON response
-        """
-        return jsonify({
-            "success": False,
-            "error": "Not implemented yet - complete this for Part 3!"
-        }), 501
-        """
+ 
 
     except Exception as e:
         return jsonify({
